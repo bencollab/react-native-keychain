@@ -166,12 +166,14 @@ RCT_EXPORT_METHOD(getGenericPasswordForOptions:(NSDictionary *)options resolver:
 
   // Found
   NSString* username = (NSString *) [found objectForKey:(__bridge id)(kSecAttrAccount)];
-  NSString* password = [[NSString alloc] initWithData:[found objectForKey:(__bridge id)(kSecValueData)] encoding:NSUTF8StringEncoding];
+  NSData* passwordData = [found objectForKey:(__bridge id)(kSecValueData)];
+  NSString* password = [[NSString alloc] initWithData:passwordData encoding:NSUTF8StringEncoding];
 
   return resolve(@{
     @"service": service,
     @"username": username,
-    @"password": password
+    @"password": password == nil ? [NSNull null] : password,
+    @"b64PasswordData": [passwordData base64EncodedStringWithOptions:0],
   });
 
 }

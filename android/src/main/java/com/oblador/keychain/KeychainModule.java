@@ -111,6 +111,7 @@ public class KeychainModule extends ReactContextBaseJavaModule {
             credentials.putString("service", service);
             credentials.putString("username", new String(decryptedUsername, Charset.forName("UTF-8")));
             credentials.putString("password", new String(decryptedPass, Charset.forName("UTF-8")));
+            credentials.putString("b64PasswordData", Base64.encode(decryptedPass));
 
             promise.resolve(credentials);
         } catch (Exception e) {

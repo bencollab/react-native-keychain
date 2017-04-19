@@ -84,7 +84,7 @@ export function setGenericPassword(
 /**
  * Fetches login combination for `service`.
  * @param {string|object} serviceOrOptions Reverse domain name qualifier for the service, defaults to `bundleId` or an options object.
- * @return {Promise} Resolves to `{ service, username, password }` when successful
+ * @return {Promise} Resolves to `{ service, username, password, b64PasswordData }` when successful
  */
 export function getGenericPassword(
   serviceOrOptions?: string | KeychainOptions
